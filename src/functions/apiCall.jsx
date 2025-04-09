@@ -11,5 +11,5 @@ export async function query(data) {
     );
     const result = await response.json();
     console.log(result.output);
-    return result.output;
+    return result.output.replace(/^```(\w+)?\n|```$/g, "").trim();;
 }
