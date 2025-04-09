@@ -9,7 +9,14 @@ import 'prismjs/themes/prism.css';
 function App() {
   const [output,setOutput] = useState("something");
   const [code ,setCode] = useState(`function add(a, b) {\n  return a + b;\n}`);
-
+  const handleFileChange = (event)=>{
+    const file = event.target.files[0];
+    if(file){
+      const reader = new FileReader();
+      reader.readAsText(file);
+      reader.onload=()=>setCode(reader.result)
+    }
+  }
 const prompt = { inputs: `Generate documentation for the following code and response should only contain the code which includes the documentation as a string:\n${code}` };
 
   return (
@@ -31,6 +38,7 @@ const prompt = { inputs: `Generate documentation for the following code and resp
         resize:'block'
       }}
     />
+    <input type="file" className='file-input' onChange={handleFileChange}></input>
 </fieldset>
 
 <button className="btn btn-xl" onClick={async ()=> setOutput(""+await query(prompt))}>Generate</button>
