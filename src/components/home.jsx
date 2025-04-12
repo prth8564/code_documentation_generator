@@ -1,15 +1,30 @@
 import {query} from "../functions/apiCall"
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { getPrompt,handleFileChange } from "../functions/getPrompt"
 import {OutputEditor,CodeEditor} from "./editor";
+import { parseAst } from "../functions/ast-parser";
+import { TableOfContents } from "./table-of-contents";
 export default function Home(){
     const [output, setOutput] = useState("something");
   const [code, setCode] = useState(`function add(a, b) {\n  return a + b;\n}`);
   const [mode, setMode] = useState("jsdoc");
+  const [toc,setToc] = useState([]);
+  useEffect(()=>{
+    try{
+      setToc(parseAst(code));
+    }
+    catch(err){
+      console.log(err);
+      setToc([]);
+    }
+  },[code])
+
+
     return (
         <div className="iofields">
         <fieldset className="fieldset">
           <legend className="fieldset-legend">Enter code here</legend>
+          <TableOfContents toc={toc} />
           <CodeEditor code={code} setCode={setCode}/>
           <input
             type="file"
