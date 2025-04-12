@@ -1,4 +1,5 @@
 export async function query(data) {
+    console.log(data);
     const response = await fetch(
         "http://localhost:8000/geminiCall",
         {
