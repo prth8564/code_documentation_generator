@@ -16,10 +16,11 @@ export default function CustomEditor({value,onChange,highlight}){
             style={{
               fontFamily: '"Fira code", "Fira Mono", monospace',
               fontSize: 20,
-              minHeight: 400,
-              minWidth: 500,
-              overflow: "scroll",
+              height: 400,
+              width: 500,
+              overflow: "auto",
               border: "3px solid",
+              boxSizing: "border-box"
             }}
           />
     )

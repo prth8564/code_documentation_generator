@@ -39,8 +39,11 @@
   margin-left: 200px;
 }
 .select{
-  margin-left:150px;
+  margin-left:10px;
 }
 .btn-primary{
   margin-left:10px;
+}
+.toggle-primary{
+  margin-left: 100px;
 }

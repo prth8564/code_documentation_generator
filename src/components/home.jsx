@@ -9,6 +9,27 @@ export default function Home(){
   const [code, setCode] = useState(`function add(a, b) {\n  return a + b;\n}`);
   const [mode, setMode] = useState("jsdoc");
   const [toc,setToc] = useState([]);
+  const [toggleAnime,setToggleAnime] = useState(true);
+  const typeWriter = (text) => {
+    console.log(toggleAnime);
+    if(toggleAnime){
+    let i = 0;
+    setOutput("");
+    const interval = setInterval(() => {
+      if (i < text.length) {
+        setOutput((prev) => prev + text[i]);
+        i++;
+      }
+      else{
+        clearInterval(interval);
+        setOutput(text);
+      }
+    }, 2);
+  }
+  else{
+    setOutput(text);
+  }
+  }
   useEffect(()=>{
     try{
       setToc(parseAst(code));
@@ -31,7 +52,7 @@ export default function Home(){
           <CodeEditor code={code} setCode={setCode}/> 
           <button
           className="btn-primary"
-          onClick={async () => setOutput("" + (await query(getPrompt(mode,code))))}>
+          onClick={async () => typeWriter((await query(getPrompt(mode,code))))}>
           Generate
         </button> 
         </fieldset>
@@ -47,6 +68,8 @@ export default function Home(){
         <fieldset className="fieldset">
           <OutputEditor output={output} setOutput={setOutput} mode={mode} />
         </fieldset>
+        <input type="checkbox" checked={toggleAnime} className="toggle toggle-primary" onChange={(e)=>setToggleAnime(e.target.checked)}/>
+        <label className="label">Toggle Animation</label>
         <select value={mode} onChange={(e)=> setMode(e.target.value)} className="select select-success">
   <option disabled={true}>Pick a format</option>
   <option value="jsdoc">JsDoc</option>
