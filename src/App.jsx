@@ -5,7 +5,7 @@ function App() {
   
 
   return (
-    <div data-theme="caramellatte">
+    <div data-theme="aqua">
       <Home />
     </div>
   );

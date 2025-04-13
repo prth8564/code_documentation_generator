@@ -21,24 +21,32 @@ export default function Home(){
 
 
     return (
-        <div className="iofields">
+      <div className="container">
+        <h1 className="main-header">CODE DOCUMENTATION GENERATOR</h1>
+      <div className="iofields">
+      <div className="inputfields">
+        <h2 className="inputfields-header">ENTER CODE HERE</h2>
         <fieldset className="fieldset">
-          <legend className="fieldset-legend">Enter code here</legend>
           <TableOfContents toc={toc} />
-          <CodeEditor code={code} setCode={setCode}/>
-          <input
+          <CodeEditor code={code} setCode={setCode}/> 
+          <button
+          className="btn-primary"
+          onClick={async () => setOutput("" + (await query(getPrompt(mode,code))))}>
+          Generate
+        </button> 
+        </fieldset>
+        <input
             type="file"
             className="file-input"
             onChange={(e)=>handleFileChange(e,setCode)}
           ></input>
+          
+      </div>
+        <div className="outputfields">
+        <h2 className="inputfields-header">AUTOMATICALLY GENERATED DOCUMENTATION</h2>
+        <fieldset className="fieldset">
+          <OutputEditor output={output} setOutput={setOutput} mode={mode} />
         </fieldset>
-
-        <button
-          className="btn-primary"
-          onClick={async () => setOutput("" + (await query(getPrompt(mode,code))))}
-        >
-          Generate
-        </button>
         <select value={mode} onChange={(e)=> setMode(e.target.value)} className="select select-success">
   <option disabled={true}>Pick a format</option>
   <option value="jsdoc">JsDoc</option>
@@ -46,12 +54,9 @@ export default function Home(){
   <option value="both">Inline Comments+JsDoc</option>
   <option value="markdown">Markdown</option>
 </select>
-        <fieldset className="fieldset">
-          <legend className="fieldset-legend">
-            Automatically generated documentation
-          </legend>
-          <OutputEditor output={output} setOutput={setOutput} mode={mode} />
-        </fieldset>
+        
+      </div>
+      </div>
       </div>
     )
 }

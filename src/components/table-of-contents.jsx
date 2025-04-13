@@ -1,15 +1,13 @@
 export function TableOfContents({toc}){
-    console.log(toc);
-   return( <div>
-        <h2>Table of contents</h2>
+   return( <div >
         <ul>
             {toc.map((item,i) =>(
-                <li key={i}>
+                <li className="list-row" key={i}>
                     <strong>{item.type}:{item.name}</strong>
                     {item.children && (
                         <ul>
                             {item.children.map ((child,j)=>(
-                                <li key={j}>:{child.type}:{child.name}</li>
+                                <li className="list-row" key={j}>:{child.type}:{child.name}</li>
                             ))}
                         </ul>
                     )}

@@ -1,11 +1,46 @@
 @import "tailwindcss";
 @plugin "daisyui"{
-  themes: caramellatte
+  themes: caramellatte,aqua
 }
-
-.iofields {
-  padding:100px;
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+}
+.inputfields-header{
+  margin-left: 200px;
+}
+.main-header{
+  margin-left: 350px;
+}
+.fieldset {
+  padding:80px;
+  padding-bottom: 0;
+  padding-top: 0;
   display:flex;
   align-items: center;
   justify-content: center;
+}
+.fieldset-legend{
+  margin-left: 100px;
+  margin-bottom: 0px;
+}
+.iofields{
+  display:flex;
+  padding-top: 80px;
+}
+.outputfields{
+  display:block;
+}
+.file-input{
+  margin:0;
+  margin-left: 200px;
+}
+.select{
+  margin-left:150px;
+}
+.btn-primary{
+  margin-left:10px;
 }

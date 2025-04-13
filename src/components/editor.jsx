@@ -4,21 +4,22 @@ import "prismjs/components/prism-markup";
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-markdown";
-import "prismjs/themes/prism.css";
+import "prismjs/themes/prism-okaidia.css";
 export default function CustomEditor({value,onChange,highlight}){
     return (
         <Editor
+        className="editor"
             value={value}
             onValueChange={onChange}
             highlight={highlight}
             padding={10}
             style={{
               fontFamily: '"Fira code", "Fira Mono", monospace',
-              fontSize: 12,
+              fontSize: 20,
               minHeight: 400,
               minWidth: 500,
               overflow: "scroll",
-              resize: "block",
+              border: "3px solid",
             }}
           />
     )
