@@ -4,6 +4,7 @@ import { getPrompt,handleFileChange } from "../functions/getPrompt"
 import {OutputEditor,CodeEditor} from "./editor";
 import { parseAst } from "../functions/ast-parser";
 import { TableOfContents } from "./table-of-contents";
+import logo from "../assets/logo.png";
 export default function Home(){
     const [output, setOutput] = useState("something");
   const [code, setCode] = useState(`function add(a, b) {\n  return a + b;\n}`);
@@ -45,7 +46,7 @@ export default function Home(){
     return (
       <div className="container">
         <div className="header" style = {{ display: 'flex', alignItems: 'center' }}>
-        <img src="../logo.png" className="logo"/><h1 className="heading">DocCraft</h1>
+        <img src={logo} className="logo"/><h1 className="heading">DocCraft</h1>
         </div>
       <div className="iofields">
       <div className="inputfields">
