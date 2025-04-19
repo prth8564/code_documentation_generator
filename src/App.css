@@ -36,14 +36,25 @@
 }
 .file-input{
   margin:0;
-  margin-left: 200px;
+  margin-left:150px;
+  width: 250px;
 }
-.select{
+.inputfields-select{
   margin-left:10px;
+  width:150px;
+}
+.outputfields-select{
+  width:250px;
 }
 .btn-primary{
   margin-left:10px;
 }
 .toggle-primary{
   margin-left: 100px;
+}
+.timeline-start{
+  font-size: small;
+}
+.ParentContent{
+  font-size: large;
 }

@@ -8,6 +8,7 @@ export default function Home(){
     const [output, setOutput] = useState("something");
   const [code, setCode] = useState(`function add(a, b) {\n  return a + b;\n}`);
   const [mode, setMode] = useState("jsdoc");
+  const [language, setLanguage] = useState("javascript");
   const [toc,setToc] = useState([]);
   const [toggleAnime,setToggleAnime] = useState(true);
   const typeWriter = (text) => {
@@ -49,7 +50,7 @@ export default function Home(){
         <h2 className="inputfields-header">ENTER CODE HERE</h2>
         <fieldset className="fieldset">
           <TableOfContents toc={toc} />
-          <CodeEditor code={code} setCode={setCode}/> 
+          <CodeEditor code={code} setCode={setCode} language={language}/> 
           <button
           className="btn-primary"
           onClick={async () => typeWriter((await query(getPrompt(mode,code))))}>
@@ -61,6 +62,16 @@ export default function Home(){
             className="file-input"
             onChange={(e)=>handleFileChange(e,setCode)}
           ></input>
+          <select onChange={(e) => { setLanguage(e.target.value)}} value={language} className="select inputfields-select">
+  <option value="javascript">JavaScript</option>
+  <option value="typescript">TypeScript</option>
+  <option value="markdown">Markdown</option>
+  <option value="html">HTML</option>
+  <option value="css">CSS</option>
+  <option value="json">JSON</option>
+  <option value="yaml">YAML</option>
+  <option value="python">Python</option>
+</select>
           
       </div>
         <div className="outputfields">
@@ -70,7 +81,7 @@ export default function Home(){
         </fieldset>
         <input type="checkbox" checked={toggleAnime} className="toggle toggle-primary" onChange={(e)=>setToggleAnime(e.target.checked)}/>
         <label className="label">Toggle Animation</label>
-        <select value={mode} onChange={(e)=> setMode(e.target.value)} className="select select-success">
+        <select value={mode} onChange={(e)=> setMode(e.target.value)} className="select outputfields-select">
   <option disabled={true}>Pick a format</option>
   <option value="jsdoc">JsDoc</option>
   <option value="inline">Inline Comments</option>
