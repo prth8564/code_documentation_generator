@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 @plugin "daisyui"{
   themes: caramellatte,aqua
@@ -11,6 +12,9 @@
 }
 .inputfields-header{
   margin-left: 200px;
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 .main-header{
   margin-left: 350px;
@@ -57,4 +61,15 @@
 }
 .ParentContent{
   font-size: large;
+}
+.logo{
+  width:130px;
+  height:130px;
+  margin-left: 450px;
+}
+
+.heading {
+  font-family: "Mukta", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }

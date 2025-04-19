@@ -44,7 +44,9 @@ export default function Home(){
 
     return (
       <div className="container">
-        <h1 className="main-header">CODE DOCUMENTATION GENERATOR</h1>
+        <div className="header" style = {{ display: 'flex', alignItems: 'center' }}>
+        <img src="../logo.png" className="logo"/><h1 className="heading">DocCraft</h1>
+        </div>
       <div className="iofields">
       <div className="inputfields">
         <h2 className="inputfields-header">ENTER CODE HERE</h2>
