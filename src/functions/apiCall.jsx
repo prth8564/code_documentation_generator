@@ -1,4 +1,5 @@
 export async function query(data) {
+    try{
     const response = await fetch(
         "http://localhost:8000/geminiCall",
         {
@@ -10,5 +11,10 @@ export async function query(data) {
         }
     );
     const result = await response.json();
-    return result.output.replace(/^```(\w+)?\n|```$/g, "").trim();;
+    return result.output.replace(/^```(\w+)?\n|```$/g, "").trim();
+}
+catch(error){
+    console.log("Error in API call",error);
+    return "Error in API call";
+}
 }

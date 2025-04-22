@@ -4,6 +4,7 @@ import { getPrompt,handleFileChange } from "../functions/getPrompt"
 import {OutputEditor,CodeEditor} from "./editor";
 import { parseAst } from "../functions/ast-parser";
 import { TableOfContents } from "./table-of-contents";
+import { GetHistory } from "./getHistory";
 import logo from "../assets/logo.png";
 export default function Home(){
     const [output, setOutput] = useState("something");
@@ -12,8 +13,18 @@ export default function Home(){
   const [language, setLanguage] = useState("javascript");
   const [toc,setToc] = useState([]);
   const [toggleAnime,setToggleAnime] = useState(true);
+
+  const setLocalStorage = (text) => {
+    const history = JSON.parse(localStorage.getItem("history")) || {history: []};
+    const newHistory = {
+      input:code,
+      output:text
+    }
+    history.history.push(newHistory);
+    localStorage.setItem("history", JSON.stringify(history));
+  }
   const typeWriter = (text) => {
-    console.log(toggleAnime);
+    setLocalStorage(text);
     if(toggleAnime){
     let i = 0;
     setOutput("");
@@ -44,15 +55,20 @@ export default function Home(){
 
 
     return (
+      <>
+      
       <div className="container">
         <div className="header" style = {{ display: 'flex', alignItems: 'center' }}>
         <img src={logo} className="logo"/><h1 className="heading">DocCraft</h1>
+        </div>
+        <div>
+        <GetHistory />
         </div>
       <div className="iofields">
       <div className="inputfields">
         <h2 className="inputfields-header">ENTER CODE HERE</h2>
         <fieldset className="fieldset">
-          <TableOfContents toc={toc} />
+          <TableOfContents toc={toc} /> 
           <CodeEditor code={code} setCode={setCode} language={language}/> 
           <button
           className="btn-primary"
@@ -95,5 +111,6 @@ export default function Home(){
       </div>
       </div>
       </div>
+      </>
     )
 }
