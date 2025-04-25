@@ -62,7 +62,7 @@ export default function Home(){
         <img src={logo} className="logo"/><h1 className="heading">DocCraft</h1>
         </div>
         <div>
-        <GetHistory />
+        <GetHistory input={setCode} output={setOutput} />
         </div>
       <div className="iofields">
       <div className="inputfields">

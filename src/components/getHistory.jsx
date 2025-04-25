@@ -1,6 +1,13 @@
 import { useEffect,useState } from "react"
 
-export function GetHistory(){
+
+export function GetHistory({input,output}){
+
+  function handleHistory(item){
+    input(item.input); 
+    output(item.output)
+  }
+
     const [history,setHistory] = useState({});
     useEffect(()=>{
        setHistory(JSON.parse(localStorage.getItem("history")) || {history: []});
@@ -19,7 +26,7 @@ export function GetHistory(){
           <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
           <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
           {(Array.isArray(history.history) ? history.history : []).map((item, index) => (
-                    <li><a>{item.input}</a></li>
+                    <li onClick={()=>handleHistory(item)}><a>{item.input}</a></li>
             ))}
           </ul>
         </div>
